@@ -6,7 +6,6 @@ This repository contains scripts supporting preprocessing and technical validati
 - `schema_harmonization.py`: renames heterogeneous source columns into the common ASALA schema.
 - `dialect_taxonomy_mapping.py`: maps source-specific dialect labels to the ASALA taxonomy.
 - `text_normalization_duplicate_analysis.py`: normalizes Arabic text and quantifies exact textual duplication and cross-dialect exact overlap.
-- `requirements.txt`: Python dependency list.
 
 ## Important methodological notes
 ASALA-Raw preserves source-driven characteristics, so duplicate analysis does not delete rows from ASALA-Raw.
