@@ -1,29 +1,43 @@
-# ASALA Reproducibility Scripts
+# ASALA Dataset
 
-This repository contains scripts supporting preprocessing and technical validation of ASALA.
+ASALA is a multi-dialect Arabic text dataset derived from authentic conversational speech, including podcasts, street interviews, and public discussion programs. It is designed to support Arabic dialect identification, conversational NLP, language modelling, and related Arabic NLP research.
 
-## Included scripts
-- `schema_harmonization.py`: renames heterogeneous source columns into the common ASALA schema.
-- `dialect_taxonomy_mapping.py`: maps source-specific dialect labels to the ASALA taxonomy.
-- `text_normalization_duplicate_analysis.py`: normalizes Arabic text and quantifies exact textual duplication and cross-dialect exact overlap.
+## Dataset Versions
 
-## Important methodological notes
-ASALA-Raw preserves source-driven characteristics, so duplicate analysis does not delete rows from ASALA-Raw.
+ASALA is released in two versions:
 
-Exact duplicate detection is performed after schema harmonization using normalized textual content. The procedure applies Unicode normalization, removes Arabic diacritics and tatweel, and normalizes whitespace. This is exact matching after normalization, not semantic near-duplicate detection.
+* ASALA-Raw: A large-scale corpus combining self-collected speech-derived Arabic text with publicly available Arabic dialect datasets. It preserves the original source-driven distribution and may contain textual redundancy.
+* ASALA-QA: A quality-assured corpus containing 71,604 manually reviewed records. It was independently collected and reviewed using selected ISO/IEC 25012 data-quality dimensions, with greater attention to dialect representation and data quality.
 
-The analysis scripts require `text` and `dialect` columns. A `country` column is optional.
+The main dataset fields are `text`, `dialect`, and, where available, `country`.
 
-The dataset is released without predefined train/validation/test partitions. Researchers should construct leakage-aware task-specific splits.
+## Repository Contents
 
-## Usage
+This repository provides scripts supporting the reproducibility of the ASALA preprocessing workflow:
+
+* `schema_harmonization.py` — harmonizes heterogeneous dataset schemas.
+* `dialect_taxonomy_mapping.py` — maps source dialect labels to the ASALA taxonomy.
+* `text_normalization_duplicate_analysis.py` — performs Arabic text normalization, exact-duplicate analysis, and cross-dialect overlap analysis.
+* `requirements.txt` — lists the required Python dependencies.
+
+Duplicate analysis in ASALA-Raw is used to quantify textual redundancy; duplicate rows are not removed from the raw release. The provided analysis performs exact matching after text normalization and should not be interpreted as semantic near-duplicate detection.
+
+## Installation
+
 ```bash
-python schema_harmonization.py --input SOURCE.csv --output harmonized.csv --source SOURCE_NAME
-python dialect_taxonomy_mapping.py --input harmonized.csv --output mapped.csv
-python text_normalization_duplicate_analysis.py --input mapped.csv --output-dir duplicate_analysis
+pip install -r requirements.txt
 ```
 
-## Before public release
-Fill the configuration dictionaries in the schema and dialect-mapping scripts with the exact mappings actually used in the final ASALA workflow. Do not add undocumented mappings.
+## Dataset Access
 
-Add the permanent ASALA dataset DOI and the selected code license before publication.
+The ASALA dataset is publicly available on Zenodo:
+
+DOI: https://doi.org/10.5281/zenodo.21859731
+
+## Citation
+
+If you use ASALA, please cite the ASALA dataset and its associated data article.
+
+ASALA: A Quality-Assured Multi-Dialect Authentic Spoken Arabic Text Dataset
+
+Zenodo DOI: https://doi.org/10.5281/zenodo.21859731
