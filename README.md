@@ -18,15 +18,8 @@ This repository provides scripts supporting the reproducibility of the ASALA pre
 * `schema_harmonization.py` — harmonizes heterogeneous dataset schemas.
 * `dialect_taxonomy_mapping.py` — maps source dialect labels to the ASALA taxonomy.
 * `text_normalization_duplicate_analysis.py` — performs Arabic text normalization, exact-duplicate analysis, and cross-dialect overlap analysis.
-* `requirements.txt` — lists the required Python dependencies.
 
 Duplicate analysis in ASALA-Raw is used to quantify textual redundancy; duplicate rows are not removed from the raw release. The provided analysis performs exact matching after text normalization and should not be interpreted as semantic near-duplicate detection.
-
-## Installation
-
-```bash
-pip install -r requirements.txt
-```
 
 ## Dataset Access
 
